@@ -1,0 +1,18 @@
+baseURL = "https://ation-dev.github.io/datamask.dev/"
+title = "Datamask"
+theme = "PaperMod"
+
+enableRobotsTXT = true
+
+[params]
+  description = "Deterministic data transformation for safe, production-like datasets"
+  defaultTheme = "light"
+  ShowCodeCopyButtons = true
+  ShowReadingTime = false
+  ShowShareButtons = false
+
+[menu]
+  [[menu.main]]
+    name = "Proposal"
+    url = "/"
+    weight = 1
