@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/datamask.dev/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=datamask.dev/livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="How it Works# Datamask is built around a simple idea:
+Humans declare intent. Datamask executes it deterministically.
+Everything else, automation, scale, and safety, is layered on top of that.
+High-level flow# Every Datamask run follows the same pipeline, regardless of whether it is run manually or in a CI job:
+Input -&gt; Config -&gt; Execution Engine -&gt; Output -&gt; Audit
+Each stage has a clear boundary and responsibility.
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/datamask.dev/docs/how-it-works/">
+  <meta property="og:site_name" content="Datamask">
+  <meta property="og:title" content="How it Works">
+  <meta property="og:description" content="How it Works# Datamask is built around a simple idea:
+Humans declare intent. Datamask executes it deterministically.
+Everything else, automation, scale, and safety, is layered on top of that.
+High-level flow# Every Datamask run follows the same pipeline, regardless of whether it is run manually or in a CI job:
+Input -&gt; Config -&gt; Execution Engine -&gt; Output -&gt; Audit
+Each stage has a clear boundary and responsibility.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+
+
+  <meta itemprop="name" content="How it Works">
+  <meta itemprop="description" content="How it Works# Datamask is built around a simple idea:
+Humans declare intent. Datamask executes it deterministically.
+Everything else, automation, scale, and safety, is layered on top of that.
+High-level flow# Every Datamask run follows the same pipeline, regardless of whether it is run manually or in a CI job:
+Input -&gt; Config -&gt; Execution Engine -&gt; Output -&gt; Audit
+Each stage has a clear boundary and responsibility.">
+  <meta itemprop="wordCount" content="438">
+
+<title>How it Works | Datamask</title>
+<link rel="icon" href="/datamask.dev/favicon.png" >
+<link rel="manifest" href="/datamask.dev/manifest.json">
+<link rel="canonical" href="http://localhost:1313/datamask.dev/docs/how-it-works/">
+<link rel="stylesheet" href="/datamask.dev/book.min.cc2c524ed250aac81b23d1f4af87344917b325208841feca0968fe450f570575.css" integrity="sha256-zCxSTtJQqsgbI9H0r4c0SRezJSCIQf7KCWj&#43;RQ9XBXU=" crossorigin="anonymous">
+
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/datamask.dev/"><span>Datamask</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/how-it-works/" class="active">
+      How it Works</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/example/" class="">
+      Sample</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/strategies/" class="">
+      Strategies</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/security/" class="">
+      Principles</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/vstonic/" class="">
+      Datamask vs Tonic.ai</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/roadmap/" class="">
+      Roadmap</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/partner/" class="">
+      Partner with Us</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/datamask.dev/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>How it Works</h3>
+
+  <label for="toc-control">
+    
+    <img src="/datamask.dev/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#how-it-works">How it Works</a></li>
+    <li><a href="#high-level-flow">High-level flow</a>
+      <ul>
+        <li><a href="#1-inputs">1. Inputs</a></li>
+        <li><a href="#2-configuration-as-the-contract">2. Configuration as the contract</a></li>
+        <li><a href="#3-deterministic-execution">3. Deterministic execution</a></li>
+        <li><a href="#4-outputs">4. Outputs</a></li>
+        <li><a href="#5-audit-as-a-first-class-output">5. Audit as a first-class output</a></li>
+      </ul>
+    </li>
+    <li><a href="#manual-and-automated-runs">Manual and automated runs</a>
+      <ul>
+        <li><a href="#manual-human-in-the-loop">Manual (human-in-the-loop)</a></li>
+        <li><a href="#automated-pipeline">Automated (pipeline)</a></li>
+      </ul>
+    </li>
+    <li><a href="#what-makes-this-different">What makes this different</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="how-it-works">How it Works<a class="anchor" href="#how-it-works">#</a></h2>
+<p>Datamask is built around a simple idea:</p>
+<blockquote class='book-hint info'>
+<p><strong>Humans declare intent. Datamask executes it deterministically.</strong></p></blockquote><p>Everything else, automation, scale, and safety, is layered on top of that.</p>
+<hr>
+<h2 id="high-level-flow">High-level flow<a class="anchor" href="#high-level-flow">#</a></h2>
+<p>Every Datamask run follows the same pipeline, regardless of whether it is run manually or in a CI job:</p>
+<blockquote class='book-hint tip'>
+<p>Input -&gt; Config -&gt; Execution Engine -&gt; Output -&gt; Audit</p></blockquote><p>Each stage has a clear boundary and responsibility.</p>
+<hr>
+<h3 id="1-inputs">1. Inputs<a class="anchor" href="#1-inputs">#</a></h3>
+<p>Inputs are always declared in configuration and can include:</p>
+<ul>
+<li>database tables</li>
+<li>SQL query results</li>
+<li>CSV files</li>
+</ul>
+<p>Future versions will also support contract and model-based inputs, but the execution model remains the same.</p>
+<p>Datamask reads only what is explicitly declared and nothing else.</p>
+<hr>
+<h3 id="2-configuration-as-the-contract">2. Configuration as the contract<a class="anchor" href="#2-configuration-as-the-contract">#</a></h3>
+<p>A Datamask configuration defines:</p>
+<ul>
+<li>what data is allowed to be used</li>
+<li>how much of it is selected</li>
+<li>how each field is transformed</li>
+<li>where the output is written</li>
+<li>where audit records are stored</li>
+</ul>
+<p>The configuration is versioned, reviewed, and promoted through environments just like application code.</p>
+<hr>
+<h3 id="3-deterministic-execution">3. Deterministic execution<a class="anchor" href="#3-deterministic-execution">#</a></h3>
+<p>When a run starts, Datamask:</p>
+<ol>
+<li>connects to the declared input source</li>
+<li>reads only the scoped data</li>
+<li>applies the configured transformation strategies</li>
+<li>preserves declared identities and relationships</li>
+<li>writes the result to the configured output</li>
+</ol>
+<p>If the same input and the same configuration are used again, the output will be identical. This makes non-production data predictable, reproducible, and debuggable.</p>
+<hr>
+<h3 id="4-outputs">4. Outputs<a class="anchor" href="#4-outputs">#</a></h3>
+<p>Datamask can write transformed data to:</p>
+<ul>
+<li>QA, UAT, or staging databases</li>
+<li>SQL dump files</li>
+<li>CSV files</li>
+</ul>
+<p>Datamask does not manage environments or retain datasets. It writes to destinations you control.</p>
+<hr>
+<h3 id="5-audit-as-a-first-class-output">5. Audit as a first-class output<a class="anchor" href="#5-audit-as-a-first-class-output">#</a></h3>
+<p>Every run produces an audit artifact alongside the data that captures -</p>
+<ul>
+<li>who ran the job</li>
+<li>when it ran</li>
+<li>which configuration was used</li>
+<li>which input schema was processed</li>
+<li>what scope was touched</li>
+<li>how many rows were transformed</li>
+</ul>
+<p>The audit can be stored in an append-only or tamper-evident destination and never contains original sensitive values.</p>
+<hr>
+<h2 id="manual-and-automated-runs">Manual and automated runs<a class="anchor" href="#manual-and-automated-runs">#</a></h2>
+<p>Datamask supports two equally important ways of working.</p>
+<h3 id="manual-human-in-the-loop">Manual (human-in-the-loop)<a class="anchor" href="#manual-human-in-the-loop">#</a></h3>
+<p>Engineers can run Datamask locally or in a controlled environment to:</p>
+<ul>
+<li>explore data</li>
+<li>refine configuration</li>
+<li>preview results</li>
+<li>validate masking and relationships</li>
+</ul>
+<h3 id="automated-pipeline">Automated (pipeline)<a class="anchor" href="#automated-pipeline">#</a></h3>
+<p>Once a configuration is approved, the same Datamask engine can be run in:</p>
+<ul>
+<li>CI pipelines</li>
+<li>scheduled jobs</li>
+<li>environment refresh workflows</li>
+</ul>
+<p>The behaviour does not change, only the trigger does.</p>
+<hr>
+<h2 id="what-makes-this-different">What makes this different<a class="anchor" href="#what-makes-this-different">#</a></h2>
+<p>Datamask does not own your data, your environments, or your workflows.</p>
+<p>It provides a <strong>deterministic execution layer</strong> that fits into the systems you already use:</p>
+<ul>
+<li>Git for configuration</li>
+<li>CI/CD for execution</li>
+<li>your infrastructure for data</li>
+<li>your storage for audit</li>
+</ul>
+<p>That is what makes Datamask safe to adopt, easy to automate, and hard to replace.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+    </span>
+    <span>
+    
+      <a href="/datamask.dev/docs/example/" class="flex align-center">
+        <span>Sample</span>
+        <img src="/datamask.dev/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#how-it-works">How it Works</a></li>
+    <li><a href="#high-level-flow">High-level flow</a>
+      <ul>
+        <li><a href="#1-inputs">1. Inputs</a></li>
+        <li><a href="#2-configuration-as-the-contract">2. Configuration as the contract</a></li>
+        <li><a href="#3-deterministic-execution">3. Deterministic execution</a></li>
+        <li><a href="#4-outputs">4. Outputs</a></li>
+        <li><a href="#5-audit-as-a-first-class-output">5. Audit as a first-class output</a></li>
+      </ul>
+    </li>
+    <li><a href="#manual-and-automated-runs">Manual and automated runs</a>
+      <ul>
+        <li><a href="#manual-human-in-the-loop">Manual (human-in-the-loop)</a></li>
+        <li><a href="#automated-pipeline">Automated (pipeline)</a></li>
+      </ul>
+    </li>
+    <li><a href="#what-makes-this-different">What makes this different</a></li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

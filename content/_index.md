@@ -1,75 +1,73 @@
 ---
 title: "Datamask"
+weight: 1
 ---
 
-## What Datamask Is (and Is Not)
+## Overview
 
-Datamask is a **deterministic data-transformation engine** that converts production data into **safe, production-like datasets** for non-production environments such as QA, UAT, staging, analytics, and development.
+**Datamask is a deterministic execution plane for non-production data. It exists to solve a problem every engineering team eventually hits:**
 
-It is designed for teams that need:
-- Realistic datasets for testing and validation
-- Preserved relationships and data behavior
-- Strong safety guarantees around sensitive information
-- A clear, auditable transformation process
+> [!IMPORTANT]
+> *We need production-like data in QA, UAT, and staging without exposing real production data.*
 
-Datamask reads data from a trusted source (for example, a database or CSV export), applies **explicit, config-driven transformation rules**, and writes the transformed data to a safe target.  
-The source data is never modified.
 
-### What Datamask *is*
-- A deterministic transformation layer for non-production data
-- Relationship-aware (joins and references continue to work)
-- Config-driven (no code changes to define rules)
-- Streaming and scalable by design
-- Designed with safety-first defaults
+---
 
-### What Datamask *is not*
-- Not a production database replica
-- Not reversible anonymization or encryption
-- Not random synthetic data generation
-- Not a one-off masking script or ad-hoc job
+## What Datamask *does*
 
-Datamask sits intentionally between raw production copies and purely synthetic data, aiming to preserve **usefulness without exposure**.
+Datamask takes declared inputs, such as databases/tables, SQL queries, or files, and transforms them into safe, stable, production-like datasets for non-production environments.
+It does this through an explicit, reviewable configuration contract that defines:
 
-## The Problem Being Solved
+- what data is allowed to be used
+- how each field is transformed
+- where outputs are written
+- where audit records are stored  
 
-Teams need realistic data in non-production environments to build, test, validate, and operate software with confidence.
+Every run produces:
 
-In practice, this usually forces an uncomfortable choice:
+- a transformed dataset
+- and a verifiable audit artifact describing exactly what happened
 
-- **Copy production data**  
-  Highly realistic, but risky, slow, and often non-compliant.
+> [!INFO]
+> The same input and the same configuration will always produce the same output.
 
-- **Use scrubbed or synthetic data**  
-  Safe, but frequently unrealistic, incomplete, and prone to missing production-only issues.
+---
 
-Both options break down at scale.
+## What Datamask *is not*
 
-### Why production copies are risky
-Direct or lightly masked production copies:
-- Expose sensitive customer information
-- Create compliance and audit overhead
-- Increase blast radius when shared with vendors or contractors
-- Are hard to refresh safely and consistently
+Datamask is not a UI-first data platform. It is not an autonomous AI system. It does not own your data or move it into a vendor-managed environment.
+Datamask runs inside your infrastructure and executes exactly what you declare, and can be executed manually via CLI or a CI job. 
 
-As systems grow, “just one more copy” becomes operational debt.
+---
 
-### Why synthetic-only data is often insufficient
-Purely synthetic datasets:
-- Break real-world relationships
-- Miss edge cases and distribution patterns
-- Drift away from production behavior over time
-- Lead to false confidence in testing
+## Determinism - as a core 
 
-Teams discover issues only after deployment — when it’s too late.
+Most data masking and synthetic data tools optimise for realism and convenience. That is useful, until your test data changes and your tests start failing for no reason.
 
-### The hidden cost
-The result is a constant trade-off between **safety** and **usefulness**:
-- Slower QA cycles
-- Lower confidence in UAT
-- Production-only bugs
-- Manual, error-prone data handling workflows
+Datamask optimises for repeatability, meaning - 
 
-Most organizations end up stitching together scripts, ad-hoc masking jobs, and manual processes, none of which scale cleanly.
+- bugs can be reproduced on the same dataset weeks later
+- regression tests don’t flake with unpredicted data
+- QA and developers see the same data for the same datamask config
+- investigations are explainable
 
-Datamask exists to remove this trade-off.
+When production data changes, you can refresh your non-production datasets without losing stability.
+
+This makes Datamask suitable for:
+
+- regulated systems
+- financial workflows
+- migration projects
+- long-running test environments
+
+where unpredictability is not acceptable.
+
+---
+
+## Who Datamask is for
+
+- backend and platform engineering teams
+- QA and UAT environments
+- data-heavy or regulated systems
+- companies with strict security and audit requirements
 

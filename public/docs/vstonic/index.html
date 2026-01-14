@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/datamask.dev/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=datamask.dev/livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Datamask vs Tonic.ai# Datamask and Tonic.ai both exist to solve the same fundamental problem:
+How do teams get safe, usable data into non-production environments?
+They approach that problem from very different directions. This page explains where they overlap and where they differ.
+Two different system models# Managed data platform vs Data execution engine.
+This distinction shapes everything.
+Tonic.ai provides a hosted system where users:
+connect data sources configure masking and synthesis in a UI generate and manage datasets inside the platform Datamask provides an execution layer that:
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/datamask.dev/docs/vstonic/">
+  <meta property="og:site_name" content="Datamask">
+  <meta property="og:title" content="Datamask vs Tonic.ai">
+  <meta property="og:description" content="Datamask vs Tonic.ai# Datamask and Tonic.ai both exist to solve the same fundamental problem:
+How do teams get safe, usable data into non-production environments?
+They approach that problem from very different directions. This page explains where they overlap and where they differ.
+Two different system models# Managed data platform vs Data execution engine.
+This distinction shapes everything.
+Tonic.ai provides a hosted system where users:
+connect data sources configure masking and synthesis in a UI generate and manage datasets inside the platform Datamask provides an execution layer that:">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+
+
+  <meta itemprop="name" content="Datamask vs Tonic.ai">
+  <meta itemprop="description" content="Datamask vs Tonic.ai# Datamask and Tonic.ai both exist to solve the same fundamental problem:
+How do teams get safe, usable data into non-production environments?
+They approach that problem from very different directions. This page explains where they overlap and where they differ.
+Two different system models# Managed data platform vs Data execution engine.
+This distinction shapes everything.
+Tonic.ai provides a hosted system where users:
+connect data sources configure masking and synthesis in a UI generate and manage datasets inside the platform Datamask provides an execution layer that:">
+  <meta itemprop="wordCount" content="304">
+
+<title>Datamask vs Tonic.ai | Datamask</title>
+<link rel="icon" href="/datamask.dev/favicon.png" >
+<link rel="manifest" href="/datamask.dev/manifest.json">
+<link rel="canonical" href="http://localhost:1313/datamask.dev/docs/vstonic/">
+<link rel="stylesheet" href="/datamask.dev/book.min.cc2c524ed250aac81b23d1f4af87344917b325208841feca0968fe450f570575.css" integrity="sha256-zCxSTtJQqsgbI9H0r4c0SRezJSCIQf7KCWj&#43;RQ9XBXU=" crossorigin="anonymous">
+
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/datamask.dev/"><span>Datamask</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/how-it-works/" class="">
+      How it Works</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/example/" class="">
+      Sample</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/strategies/" class="">
+      Strategies</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/security/" class="">
+      Principles</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/vstonic/" class="active">
+      Datamask vs Tonic.ai</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/roadmap/" class="">
+      Roadmap</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/partner/" class="">
+      Partner with Us</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/datamask.dev/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Datamask vs Tonic.ai</h3>
+
+  <label for="toc-control">
+    
+    <img src="/datamask.dev/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#two-different-system-models">Two different system models</a></li>
+    <li><a href="#infrastructure-and-control">Infrastructure and control</a></li>
+    <li><a href="#configuration-vs-platform-state">Configuration vs platform state</a></li>
+    <li><a href="#where-datamask-fits-best">Where Datamask fits best</a></li>
+    <li><a href="#choosing-the-right-tool">Choosing the right tool</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="datamask-vs-tonicai">Datamask vs Tonic.ai<a class="anchor" href="#datamask-vs-tonicai">#</a></h1>
+<p>Datamask and Tonic.ai both exist to solve the same fundamental problem:</p>
+<blockquote class='book-hint '>
+<p><em>How do teams get safe, usable data into non-production environments?</em></p>
+</blockquote><p>They approach that problem from very different directions. This page explains where they overlap and where they differ.</p>
+<hr>
+<h2 id="two-different-system-models">Two different system models<a class="anchor" href="#two-different-system-models">#</a></h2>
+<blockquote class='book-hint note'>
+<p><strong>Managed data platform</strong> vs <strong>Data execution engine</strong>.</p></blockquote><p>This distinction shapes everything.</p>
+<p>Tonic.ai provides a hosted system where users:</p>
+<ul>
+<li>connect data sources</li>
+<li>configure masking and synthesis in a UI</li>
+<li>generate and manage datasets inside the platform</li>
+</ul>
+<p>Datamask provides an execution layer that:</p>
+<ul>
+<li>runs inside your infrastructure</li>
+<li>reads only what you declare</li>
+<li>transforms data based on a configuration contract</li>
+<li>writes results to destinations you control</li>
+</ul>
+<p>One owns the dataset lifecycle. The other executes a data transformation contract.</p>
+<hr>
+<h2 id="infrastructure-and-control">Infrastructure and control<a class="anchor" href="#infrastructure-and-control">#</a></h2>
+<p>Datamask is designed to run:</p>
+<ul>
+<li>in your VPC</li>
+<li>in CI/CD</li>
+<li>in air-gapped or regulated environments</li>
+</ul>
+<p>It does not require:</p>
+<ul>
+<li>data to leave your network</li>
+<li>or execution to happen in a vendor-managed system</li>
+</ul>
+<p>This makes Datamask suitable for teams with:</p>
+<ul>
+<li>strict security policies</li>
+<li>data residency requirements</li>
+<li>or infrastructure-driven workflows</li>
+</ul>
+<hr>
+<h2 id="configuration-vs-platform-state">Configuration vs platform state<a class="anchor" href="#configuration-vs-platform-state">#</a></h2>
+<p>With Datamask:</p>
+<ul>
+<li>all intent lives in versioned configuration files</li>
+<li>execution is stateless</li>
+<li>results are auditable and reproducible</li>
+</ul>
+<p>This fits naturally into:</p>
+<ul>
+<li>Git-based workflows</li>
+<li>code review</li>
+<li>change management</li>
+</ul>
+<hr>
+<h2 id="where-datamask-fits-best">Where Datamask fits best<a class="anchor" href="#where-datamask-fits-best">#</a></h2>
+<p>Datamask is designed for teams that need:</p>
+<ul>
+<li>stable, repeatable test data</li>
+<li>strong auditability</li>
+<li>tight control over what data is used</li>
+<li>and integration into engineering pipelines</li>
+</ul>
+<p>Many organisations use both styles:</p>
+<ul>
+<li>a platform for generating large synthetic datasets</li>
+<li>and an execution engine for maintaining deterministic QA and UAT environments</li>
+</ul>
+<hr>
+<h2 id="choosing-the-right-tool">Choosing the right tool<a class="anchor" href="#choosing-the-right-tool">#</a></h2>
+<p>If your primary need is:</p>
+<ul>
+<li>large-scale synthetic data</li>
+<li>statistical modelling</li>
+<li>exploratory datasets</li>
+</ul>
+<p>A managed data platform is often the right fit.</p>
+<p>If your primary need is:</p>
+<ul>
+<li>deterministic, production-like QA and UAT data</li>
+<li>reproducible environments</li>
+<li>light-weight with quick onboarding</li>
+<li>and auditability</li>
+</ul>
+<p>Datamask is designed for you.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/datamask.dev/docs/security/" class="flex align-center">
+        <img src="/datamask.dev/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Principles</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/datamask.dev/docs/roadmap/" class="flex align-center">
+        <span>Roadmap</span>
+        <img src="/datamask.dev/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#two-different-system-models">Two different system models</a></li>
+    <li><a href="#infrastructure-and-control">Infrastructure and control</a></li>
+    <li><a href="#configuration-vs-platform-state">Configuration vs platform state</a></li>
+    <li><a href="#where-datamask-fits-best">Where Datamask fits best</a></li>
+    <li><a href="#choosing-the-right-tool">Choosing the right tool</a></li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

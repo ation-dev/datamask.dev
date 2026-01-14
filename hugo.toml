@@ -1,18 +1,14 @@
 baseURL = "https://ation-dev.github.io/datamask.dev/"
 title = "Datamask"
-theme = "PaperMod"
+theme = "hugo-book"
 
 enableRobotsTXT = true
+markup.goldmark.renderer.unsafe = true
 
 [params]
-  description = "Deterministic data transformation for safe, production-like datasets"
-  defaultTheme = "light"
-  ShowCodeCopyButtons = true
-  ShowReadingTime = false
-  ShowShareButtons = false
+  BookTheme = "light"          # auto | dark | light
+  BookSearch = false          # keep minimal for proposal-first
+  BookLogo = ""               # optional later
+  BookToC = true              # table of contents on long pages
+  BookSection = "docs"           # keep default behavior
 
-[menu]
-  [[menu.main]]
-    name = "Proposal"
-    url = "/"
-    weight = 1

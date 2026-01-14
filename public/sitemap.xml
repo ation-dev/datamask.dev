@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/datamask.dev/categories/</loc>
-  </url><url>
     <loc>http://localhost:1313/datamask.dev/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamask.dev/docs/how-it-works/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamask.dev/docs/security/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamask.dev/docs/example/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamask.dev/docs/strategies/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamask.dev/docs/roadmap/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamask.dev/docs/contact/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamask.dev/docs/</loc>
+  </url><url>
+    <loc>http://localhost:1313/datamask.dev/categories/</loc>
   </url><url>
     <loc>http://localhost:1313/datamask.dev/tags/</loc>
   </url>
