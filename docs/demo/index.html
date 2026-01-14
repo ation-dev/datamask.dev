@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/datamask.dev/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=datamask.dev/livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content=" Demo (V0)# This page provides a conceptual, end-to-end walkthrough of how Datamask behaves in practice. It is illustrative, not a runnable distribution, and is intended to support design discussions and early feedback.
+This demo focuses on behavior, boundaries, and determinism, not installation or execution.
+What this demo demonstrates# Declarative control# All behavior is defined in configuration, not CLI flags or code.
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/datamask.dev/docs/demo/">
+  <meta property="og:site_name" content="Datamask">
+  <meta property="og:title" content="Demo">
+  <meta property="og:description" content="Demo (V0)# This page provides a conceptual, end-to-end walkthrough of how Datamask behaves in practice. It is illustrative, not a runnable distribution, and is intended to support design discussions and early feedback.
+This demo focuses on behavior, boundaries, and determinism, not installation or execution.
+What this demo demonstrates# Declarative control# All behavior is defined in configuration, not CLI flags or code.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+
+
+  <meta itemprop="name" content="Demo">
+  <meta itemprop="description" content="Demo (V0)# This page provides a conceptual, end-to-end walkthrough of how Datamask behaves in practice. It is illustrative, not a runnable distribution, and is intended to support design discussions and early feedback.
+This demo focuses on behavior, boundaries, and determinism, not installation or execution.
+What this demo demonstrates# Declarative control# All behavior is defined in configuration, not CLI flags or code.">
+  <meta itemprop="wordCount" content="408">
+
+<title>Demo | Datamask</title>
+<link rel="icon" href="/datamask.dev/favicon.png" >
+<link rel="manifest" href="/datamask.dev/manifest.json">
+<link rel="canonical" href="http://localhost:1313/datamask.dev/docs/demo/">
+<link rel="stylesheet" href="/datamask.dev/book.min.cc2c524ed250aac81b23d1f4af87344917b325208841feca0968fe450f570575.css" integrity="sha256-zCxSTtJQqsgbI9H0r4c0SRezJSCIQf7KCWj&#43;RQ9XBXU=" crossorigin="anonymous">
+
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/datamask.dev/"><span>Datamask</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/how-it-works/" class="">
+      How Datamask Works</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/roadmap/" class="">
+      Roadmap</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/contact/" class="">
+      Contact</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/demo/" class="active">
+      Demo</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/datamask.dev/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Demo</h3>
+
+  <label for="toc-control">
+    
+    <img src="/datamask.dev/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#demo-v0">Demo (V0)</a></li>
+    <li><a href="#what-this-demo-demonstrates">What this demo demonstrates</a>
+      <ul>
+        <li><a href="#declarative-control">Declarative control</a></li>
+        <li><a href="#determinism">Determinism</a></li>
+        <li><a href="#relationship-safety">Relationship safety</a></li>
+      </ul>
+    </li>
+    <li><a href="#demo-flow">Demo flow</a></li>
+    <li><a href="#demo-artefacts">Demo artefacts</a></li>
+    <li><a href="#design-partners">Design partners</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><hr>
+<h2 id="demo-v0">Demo (V0)<a class="anchor" href="#demo-v0">#</a></h2>
+<p>This page provides a <strong>conceptual, end-to-end walkthrough</strong> of how Datamask behaves in practice.
+It is <strong>illustrative</strong>, not a runnable distribution, and is intended to support design discussions and early feedback.</p>
+<!-- raw HTML omitted -->
+<p>This demo focuses on <strong>behavior, boundaries, and determinism</strong>, not installation or execution.</p>
+<!-- raw HTML omitted -->
+<hr>
+<h2 id="what-this-demo-demonstrates">What this demo demonstrates<a class="anchor" href="#what-this-demo-demonstrates">#</a></h2>
+<!-- raw HTML omitted -->
+<h3 id="declarative-control">Declarative control<a class="anchor" href="#declarative-control">#</a></h3>
+<p>All behavior is defined in configuration, not CLI flags or code.</p>
+<h3 id="determinism">Determinism<a class="anchor" href="#determinism">#</a></h3>
+<p>Same input + same config → same output across runs.</p>
+<h3 id="relationship-safety">Relationship safety<a class="anchor" href="#relationship-safety">#</a></h3>
+<p>Identifiers remain consistent across joins and derived datasets.</p>
+<!-- raw HTML omitted -->
+<hr>
+<h2 id="demo-flow">Demo flow<a class="anchor" href="#demo-flow">#</a></h2>
+<pre class="mermaid">flowchart TD
+  A[Source&lt;br/&gt;Postgres / CSV] --&gt; B[Config Validation]
+  B --&gt; C[Deterministic Transformation Engine]
+  C --&gt; D[Masked Output&lt;br/&gt;CSV / Non-prod DB]
+  C --&gt; E[Audit Log]</pre><script src="/datamask.dev/mermaid.min.js"></script><script>mermaid.initialize({"flowchart":{"useMaxWidth":true},"theme":"default"})</script><hr>
+<h2 id="demo-artefacts">Demo artefacts<a class="anchor" href="#demo-artefacts">#</a></h2>
+<div class="book-tabs">
+
+<input type="radio" class="toggle" name="tabs-2" id="tabs-2-0" checked="checked" /><label for="tabs-2-0">CLI</label><div class="book-tabs-content markdown-inner">
+<h3 id="cli-illustrative">CLI (illustrative)<a class="anchor" href="#cli-illustrative">#</a></h3>
+<p>Datamask uses a <strong>thin CLI</strong>. All operational detail lives in configuration.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>datamask run --config ./configs/demo-users.yml</span></span></code></pre></div><!-- raw HTML omitted -->
+</div>
+
+<input type="radio" class="toggle" name="tabs-2" id="tabs-2-1"  /><label for="tabs-2-1">Config (table mode)</label><div class="book-tabs-content markdown-inner">
+<h3 id="table-based-configuration">Table-based configuration<a class="anchor" href="#table-based-configuration">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">job</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">id</span>: <span style="color:#ae81ff">demo-users-v0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mode</span>: <span style="color:#ae81ff">table</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">rowSampling</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">percentage</span>: <span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">failFast</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">source</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">postgres</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">connection</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">jdbcUrl</span>: <span style="color:#ae81ff">jdbc:postgresql://localhost:5432/demo_db</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">username</span>: <span style="color:#ae81ff">demo_user</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">password</span>: <span style="color:#ae81ff">demo_password</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">schema</span>: <span style="color:#ae81ff">public</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">table</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">users</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">primaryKey</span>: <span style="color:#ae81ff">id</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">output</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">csv</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">csv</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./out/users_masked.csv</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">delimiter</span>: <span style="color:#e6db74">&#34;,&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">includeHeader</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">overwrite</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">audit</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">format</span>: <span style="color:#ae81ff">jsonl</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./out/audit.jsonl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">strategies</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">user_id_token</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">deterministic_token</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">params</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">users.id</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">prefix</span>: <span style="color:#e6db74">&#34;U_&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">synthetic_full_name</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">synthetic_name</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">params</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">locale</span>: <span style="color:#ae81ff">neutral</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">synthetic_email</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">synthetic_email</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">params</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">domain</span>: <span style="color:#ae81ff">example.test</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">masked_phone</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">keep_last_n</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">params</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">keep</span>: <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">maskChar</span>: <span style="color:#e6db74">&#34;*&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">columns</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">users</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">id</span>: { <span style="color:#f92672">strategy</span>: <span style="color:#ae81ff">user_id_token }</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">full_name</span>: { <span style="color:#f92672">strategy</span>: <span style="color:#ae81ff">synthetic_full_name }</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">email</span>: { <span style="color:#f92672">strategy</span>: <span style="color:#ae81ff">synthetic_email }</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">phone</span>: { <span style="color:#f92672">strategy</span>: <span style="color:#ae81ff">masked_phone }</span></span></span></code></pre></div><!-- raw HTML omitted -->
+</div>
+
+<input type="radio" class="toggle" name="tabs-2" id="tabs-2-2"  /><label for="tabs-2-2">Config (query mode)</label><div class="book-tabs-content markdown-inner">
+<h3 id="query-based-configuration">Query-based configuration<a class="anchor" href="#query-based-configuration">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">job</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">id</span>: <span style="color:#ae81ff">demo-orders-query-v0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mode</span>: <span style="color:#ae81ff">query</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">failFast</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">source</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">postgres</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">connection</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">jdbcUrl</span>: <span style="color:#ae81ff">jdbc:postgresql://localhost:5432/demo_db</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">username</span>: <span style="color:#ae81ff">demo_user</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">password</span>: <span style="color:#ae81ff">demo_password</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">query</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">sqlFile</span>: <span style="color:#ae81ff">./queries/orders_enriched.sql</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">params</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">country</span>: <span style="color:#e6db74">&#34;GB&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">min_amount</span>: <span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">from_date</span>: <span style="color:#e6db74">&#34;2025-10-01&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">to_date</span>: <span style="color:#e6db74">&#34;2025-12-31&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">output</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">csv</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">csv</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./out/orders_enriched_masked.csv</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">includeHeader</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">audit</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">path</span>: <span style="color:#ae81ff">./out/audit.jsonl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">strategies</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">user_id_token</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">deterministic_token</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">params</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">users.id</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">prefix</span>: <span style="color:#e6db74">&#34;U_&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">order_id_token</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">deterministic_token</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">params</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">orders.id</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">prefix</span>: <span style="color:#e6db74">&#34;O_&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">amount_perturb</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">numeric_perturb</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">params</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">percent</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">clampMin</span>: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">columns</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">result</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">user_id</span>: { <span style="color:#f92672">strategy</span>: <span style="color:#ae81ff">user_id_token }</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">order_id</span>: { <span style="color:#f92672">strategy</span>: <span style="color:#ae81ff">order_id_token }</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">amount_minor</span>: { <span style="color:#f92672">strategy</span>: <span style="color:#ae81ff">amount_perturb }</span></span></span></code></pre></div><!-- raw HTML omitted -->
+</div>
+
+<input type="radio" class="toggle" name="tabs-2" id="tabs-2-3"  /><label for="tabs-2-3">Input → Output</label><div class="book-tabs-content markdown-inner">
+<h3 id="conceptual-example">Conceptual example<a class="anchor" href="#conceptual-example">#</a></h3>
+<p><strong>Input (conceptual):</strong></p>
+<ul>
+<li><code>users.id = 1001</code></li>
+<li><code>orders.user_id = 1001</code></li>
+</ul>
+<p><strong>Output (conceptual):</strong></p>
+<ul>
+<li><code>users.id = U_7f2a1c</code></li>
+<li><code>orders.user_id = U_7f2a1c</code></li>
+</ul>
+<p>The same identifier is transformed consistently wherever it appears.</p>
+</div>
+
+<input type="radio" class="toggle" name="tabs-2" id="tabs-2-4"  /><label for="tabs-2-4">Audit</label><div class="book-tabs-content markdown-inner">
+<h3 id="audit-trail-illustrative">Audit trail (illustrative)<a class="anchor" href="#audit-trail-illustrative">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{<span style="color:#f92672">&#34;ts&#34;</span>:<span style="color:#e6db74">&#34;2026-01-06T21:12:03Z&#34;</span>,<span style="color:#f92672">&#34;job&#34;</span>:<span style="color:#e6db74">&#34;demo-users-v0&#34;</span>,<span style="color:#f92672">&#34;event&#34;</span>:<span style="color:#e6db74">&#34;job_start&#34;</span>}
+</span></span><span style="display:flex;"><span>{<span style="color:#f92672">&#34;ts&#34;</span>:<span style="color:#e6db74">&#34;2026-01-06T21:12:04Z&#34;</span>,<span style="color:#f92672">&#34;event&#34;</span>:<span style="color:#e6db74">&#34;config_validation&#34;</span>,<span style="color:#f92672">&#34;status&#34;</span>:<span style="color:#e6db74">&#34;ok&#34;</span>}
+</span></span><span style="display:flex;"><span>{<span style="color:#f92672">&#34;ts&#34;</span>:<span style="color:#e6db74">&#34;2026-01-06T21:12:05Z&#34;</span>,<span style="color:#f92672">&#34;event&#34;</span>:<span style="color:#e6db74">&#34;transform_summary&#34;</span>,<span style="color:#f92672">&#34;rows_read&#34;</span>:<span style="color:#ae81ff">3</span>,<span style="color:#f92672">&#34;rows_written&#34;</span>:<span style="color:#ae81ff">3</span>}
+</span></span><span style="display:flex;"><span>{<span style="color:#f92672">&#34;ts&#34;</span>:<span style="color:#e6db74">&#34;2026-01-06T21:12:05Z&#34;</span>,<span style="color:#f92672">&#34;event&#34;</span>:<span style="color:#e6db74">&#34;job_complete&#34;</span>,<span style="color:#f92672">&#34;status&#34;</span>:<span style="color:#e6db74">&#34;success&#34;</span>}</span></span></code></pre></div><p>Audit logs are structured, append-only, and suitable for review or archival.</p>
+</div>
+
+</div>
+<hr>
+<h2 id="design-partners">Design partners<a class="anchor" href="#design-partners">#</a></h2>
+<p>Datamask is currently in a <strong>design-partner phase</strong>.</p>
+<p>We are looking to collaborate with teams who care about:</p>
+<ul>
+<li>safe QA / UAT data refreshes</li>
+<li>deterministic test environments</li>
+<li>auditable data handling pipelines</li>
+</ul>
+<p>Your feedback will directly shape Datamask V0.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/datamask.dev/docs/contact/" class="flex align-center">
+        <img src="/datamask.dev/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Contact</span>
+      </a>
+    
+    </span>
+    <span>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#demo-v0">Demo (V0)</a></li>
+    <li><a href="#what-this-demo-demonstrates">What this demo demonstrates</a>
+      <ul>
+        <li><a href="#declarative-control">Declarative control</a></li>
+        <li><a href="#determinism">Determinism</a></li>
+        <li><a href="#relationship-safety">Relationship safety</a></li>
+      </ul>
+    </li>
+    <li><a href="#demo-flow">Demo flow</a></li>
+    <li><a href="#demo-artefacts">Demo artefacts</a></li>
+    <li><a href="#design-partners">Design partners</a></li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

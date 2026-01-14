@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/datamask.dev/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=datamask.dev/livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="What Datamask Is (and Is Not)# Datamask is a deterministic data-transformation engine that creates safe, production-like datasets for non-production environments.
+It is designed for teams that need realistic data without copying or exposing real customer information.
+What Datamask does# Datamask reads data from a trusted source (for example, a database or CSV export), applies explicit, config-driven transformation rules, and writes the transformed data to a safe target.
+Source data is read-only Transformations are deterministic and repeatable Relationships and joins are preserved Output is suitable for QA, UAT, staging, analytics, and development What Datamask is# A deterministic transformation layer for non-production data Relationship-aware (joins and references continue to work) Config-driven (no code changes to define rules) Streaming and scalable by design Designed with safety-first defaults What Datamask is not# ❌ Not a production database replica ❌ Not reversible anonymization or encryption ❌ Not random synthetic data generation ❌ Not a one-off masking script or ad-hoc job Datamask sits intentionally between raw production copies and purely synthetic data, aiming to preserve usefulness without exposure.
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/datamask.dev/en/">
+  <meta property="og:site_name" content="Datamask">
+  <meta property="og:title" content="Datamask">
+  <meta property="og:description" content="What Datamask Is (and Is Not)# Datamask is a deterministic data-transformation engine that creates safe, production-like datasets for non-production environments.
+It is designed for teams that need realistic data without copying or exposing real customer information.
+What Datamask does# Datamask reads data from a trusted source (for example, a database or CSV export), applies explicit, config-driven transformation rules, and writes the transformed data to a safe target.
+Source data is read-only Transformations are deterministic and repeatable Relationships and joins are preserved Output is suitable for QA, UAT, staging, analytics, and development What Datamask is# A deterministic transformation layer for non-production data Relationship-aware (joins and references continue to work) Config-driven (no code changes to define rules) Streaming and scalable by design Designed with safety-first defaults What Datamask is not# ❌ Not a production database replica ❌ Not reversible anonymization or encryption ❌ Not random synthetic data generation ❌ Not a one-off masking script or ad-hoc job Datamask sits intentionally between raw production copies and purely synthetic data, aiming to preserve usefulness without exposure.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="website">
+
+
+  <meta itemprop="name" content="Datamask">
+  <meta itemprop="description" content="What Datamask Is (and Is Not)# Datamask is a deterministic data-transformation engine that creates safe, production-like datasets for non-production environments.
+It is designed for teams that need realistic data without copying or exposing real customer information.
+What Datamask does# Datamask reads data from a trusted source (for example, a database or CSV export), applies explicit, config-driven transformation rules, and writes the transformed data to a safe target.
+Source data is read-only Transformations are deterministic and repeatable Relationships and joins are preserved Output is suitable for QA, UAT, staging, analytics, and development What Datamask is# A deterministic transformation layer for non-production data Relationship-aware (joins and references continue to work) Config-driven (no code changes to define rules) Streaming and scalable by design Designed with safety-first defaults What Datamask is not# ❌ Not a production database replica ❌ Not reversible anonymization or encryption ❌ Not random synthetic data generation ❌ Not a one-off masking script or ad-hoc job Datamask sits intentionally between raw production copies and purely synthetic data, aiming to preserve usefulness without exposure.">
+  <meta itemprop="wordCount" content="336">
+
+<title>Datamask | Datamask</title>
+<link rel="icon" href="/datamask.dev/favicon.png" >
+<link rel="manifest" href="/datamask.dev/manifest.json">
+<link rel="canonical" href="http://localhost:1313/datamask.dev/en/">
+<link rel="stylesheet" href="/datamask.dev/book.min.6970156cec683193d93c9c4edaf0d56574e4361df2e0c1be4f697ae81c3ba55f.css" integrity="sha256-aXAVbOxoMZPZPJxO2vDVZXTkNh3y4MG&#43;T2l66Bw7pV8=" crossorigin="anonymous">
+
+
+
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/datamask.dev/en/index.xml" title="Datamask" />
+
+  
+</head>
+<body dir="ltr" class="book-kind-section book-type-en">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/datamask.dev/"><span>Datamask</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/" class="">
+      Datamask</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/contact/" class="">
+      Contact</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/roadmap/" class="">
+      Roadmap</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/en/" class="active">
+      Datamask</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/en/contact/" class="">
+      Contact</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/en/roadmap/" class="">
+      Roadmap</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/datamask.dev/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>Datamask</h3>
+
+  <label for="toc-control">
+    
+    <img src="/datamask.dev/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-datamask-is-and-is-not">What Datamask Is (and Is Not)</a>
+      <ul>
+        <li><a href="#what-datamask-does">What Datamask <em>does</em></a></li>
+        <li><a href="#what-datamask-is">What Datamask <em>is</em></a></li>
+        <li><a href="#what-datamask-is-not">What Datamask <em>is not</em></a></li>
+      </ul>
+    </li>
+    <li><a href="#the-problem-being-solved">The Problem Being Solved</a>
+      <ul>
+        <li><a href="#option-1-copy-production-data">Option 1: Copy production data</a></li>
+        <li><a href="#option-2-use-synthetic-or-scrubbed-data">Option 2: Use synthetic or scrubbed data</a></li>
+        <li><a href="#result">Result</a></li>
+      </ul>
+    </li>
+    <li><a href="#core-principles">Core Principles</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h2 id="what-datamask-is-and-is-not">What Datamask Is (and Is Not)<a class="anchor" href="#what-datamask-is-and-is-not">#</a></h2>
+<p>Datamask is a deterministic data-transformation engine that creates safe, production-like datasets for non-production environments.</p>
+<p>It is designed for teams that need realistic data without copying or exposing real customer information.</p>
+<h3 id="what-datamask-does">What Datamask <em>does</em><a class="anchor" href="#what-datamask-does">#</a></h3>
+<p>Datamask reads data from a trusted source (for example, a database or CSV export), applies explicit, config-driven transformation rules, and writes the transformed data to a safe target.</p>
+<ul>
+<li>Source data is read-only</li>
+<li>Transformations are deterministic and repeatable</li>
+<li>Relationships and joins are preserved</li>
+<li>Output is suitable for QA, UAT, staging, analytics, and development</li>
+</ul>
+<h3 id="what-datamask-is">What Datamask <em>is</em><a class="anchor" href="#what-datamask-is">#</a></h3>
+<ul>
+<li>A deterministic transformation layer for non-production data</li>
+<li>Relationship-aware (joins and references continue to work)</li>
+<li>Config-driven (no code changes to define rules)</li>
+<li>Streaming and scalable by design</li>
+<li>Designed with safety-first defaults</li>
+</ul>
+<h3 id="what-datamask-is-not">What Datamask <em>is not</em><a class="anchor" href="#what-datamask-is-not">#</a></h3>
+<ul>
+<li>❌ Not a production database replica</li>
+<li>❌ Not reversible anonymization or encryption</li>
+<li>❌ Not random synthetic data generation</li>
+<li>❌ Not a one-off masking script or ad-hoc job</li>
+</ul>
+<p>Datamask sits intentionally between raw production copies and purely synthetic data, aiming to preserve <strong>usefulness without exposure</strong>.</p>
+<blockquote class='book-hint '>
+<p><strong>Design intent:</strong><br>
+Preserve usefulness where it helps testing, and prioritize safety where realism increases risk.</p>
+</blockquote><h2 id="the-problem-being-solved">The Problem Being Solved<a class="anchor" href="#the-problem-being-solved">#</a></h2>
+<p>Teams need realistic data in non-production environments — but today this forces a trade-off.</p>
+<h3 id="option-1-copy-production-data">Option 1: Copy production data<a class="anchor" href="#option-1-copy-production-data">#</a></h3>
+<ul>
+<li>Highly realistic</li>
+<li>High compliance and exposure risk</li>
+<li>Hard to refresh safely</li>
+</ul>
+<h3 id="option-2-use-synthetic-or-scrubbed-data">Option 2: Use synthetic or scrubbed data<a class="anchor" href="#option-2-use-synthetic-or-scrubbed-data">#</a></h3>
+<ul>
+<li>Safer by default</li>
+<li>Breaks real-world relationships</li>
+<li>Misses production-only edge cases</li>
+</ul>
+<h3 id="result">Result<a class="anchor" href="#result">#</a></h3>
+<p>Teams trade safety for usefulness, or usefulness for safety.
+Datamask exists to remove this trade-off.</p>
+<h2 id="core-principles">Core Principles<a class="anchor" href="#core-principles">#</a></h2>
+<p>Datamask is guided by a small set of explicit design principles.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Principle</th>
+          <th>What it means</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Determinism</td>
+          <td>Same input + config always produces the same output</td>
+      </tr>
+      <tr>
+          <td>Relationship-aware</td>
+          <td>Joins and references continue to work</td>
+      </tr>
+      <tr>
+          <td>Safety-first</td>
+          <td>High-risk identifiers prefer safe surrogates over realism</td>
+      </tr>
+      <tr>
+          <td>Config-driven</td>
+          <td>Rules defined declaratively, not in code</td>
+      </tr>
+      <tr>
+          <td>Streaming</td>
+          <td>Scales without full data dumps</td>
+      </tr>
+      <tr>
+          <td>Auditable</td>
+          <td>Clear boundaries and traceable decisions</td>
+      </tr>
+  </tbody>
+</table>
+<!-- raw HTML omitted -->
+<pre><code>Deterministic transformations enable repeatable test runs, stable joins,
+and predictable debugging when datasets are refreshed.
+
+Randomness is avoided unless explicitly requested.
+</code></pre>
+<!-- raw HTML omitted -->
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+  
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/datamask.dev/docs/roadmap/" class="flex align-center">
+        <img src="/datamask.dev/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Roadmap</span>
+      </a>
+    
+    </span>
+    <span>
+    
+      <a href="/datamask.dev/en/contact/" class="flex align-center">
+        <span>Contact</span>
+        <img src="/datamask.dev/icons/forward.svg" class="book-icon" alt="Forward" />
+      </a>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-datamask-is-and-is-not">What Datamask Is (and Is Not)</a>
+      <ul>
+        <li><a href="#what-datamask-does">What Datamask <em>does</em></a></li>
+        <li><a href="#what-datamask-is">What Datamask <em>is</em></a></li>
+        <li><a href="#what-datamask-is-not">What Datamask <em>is not</em></a></li>
+      </ul>
+    </li>
+    <li><a href="#the-problem-being-solved">The Problem Being Solved</a>
+      <ul>
+        <li><a href="#option-1-copy-production-data">Option 1: Copy production data</a></li>
+        <li><a href="#option-2-use-synthetic-or-scrubbed-data">Option 2: Use synthetic or scrubbed data</a></li>
+        <li><a href="#result">Result</a></li>
+      </ul>
+    </li>
+    <li><a href="#core-principles">Core Principles</a></li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

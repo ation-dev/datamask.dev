@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Sections on Datamask</title><link>https://ation-dev.github.io/datamask.dev/docs/</link><description>Recent content in Sections on Datamask</description><generator>Hugo</generator><language>en</language><atom:link href="https://ation-dev.github.io/datamask.dev/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>How it Works</title><link>https://ation-dev.github.io/datamask.dev/docs/how-it-works/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ation-dev.github.io/datamask.dev/docs/how-it-works/</guid><description>&lt;h2 id="how-it-works">How it Works&lt;a class="anchor" href="#how-it-works">#&lt;/a>&lt;/h2>
+&lt;p>Datamask is built around a simple idea:&lt;/p>
+&lt;blockquote class='book-hint info'>
+&lt;p>&lt;strong>Humans declare intent. Datamask executes it deterministically.&lt;/strong>&lt;/p>&lt;/blockquote>&lt;p>Everything else, automation, scale, and safety, is layered on top of that.&lt;/p>
+&lt;hr>
+&lt;h2 id="high-level-flow">High-level flow&lt;a class="anchor" href="#high-level-flow">#&lt;/a>&lt;/h2>
+&lt;p>Every Datamask run follows the same pipeline, regardless of whether it is run manually or in a CI job:&lt;/p>
+&lt;blockquote class='book-hint tip'>
+&lt;p>Input -&amp;gt; Config -&amp;gt; Execution Engine -&amp;gt; Output -&amp;gt; Audit&lt;/p>&lt;/blockquote>&lt;p>Each stage has a clear boundary and responsibility.&lt;/p></description></item><item><title>Sample</title><link>https://ation-dev.github.io/datamask.dev/docs/example/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ation-dev.github.io/datamask.dev/docs/example/</guid><description>&lt;h2 id="sample">Sample&lt;a class="anchor" href="#sample">#&lt;/a>&lt;/h2>
+&lt;p>This section shows what Datamask takes, how it is configured, and what it produces.&lt;/p>
+&lt;hr>
+&lt;h2 id="the-scenario">The scenario&lt;a class="anchor" href="#the-scenario">#&lt;/a>&lt;/h2>
+&lt;p>Two tables, &amp;lsquo;customer&amp;rsquo; &amp;amp; &amp;lsquo;orders&amp;rsquo;, linked via &amp;lsquo;customer_id&amp;rsquo; are provided as input (sql query).&lt;/p>
+&lt;h2 id="end-to-end">End-to-end&lt;a class="anchor" href="#end-to-end">#&lt;/a>&lt;/h2>
+&lt;div class="book-tabs">
+
+&lt;input type="radio" class="toggle" name="tabs-0" id="tabs-0-0" checked="checked" />&lt;label for="tabs-0-0">Input&lt;/label>&lt;div class="book-tabs-content markdown-inner">
+&lt;h3 id="customer">customer&lt;a class="anchor" href="#customer">#&lt;/a>&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: right">customer_id&lt;/th>
+ &lt;th>name&lt;/th>
+ &lt;th>email&lt;/th>
+ &lt;th>phone&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: right">101&lt;/td>
+ &lt;td>Alicia Reynolds&lt;/td>
+ &lt;td>&lt;a href="mailto:alicia.reynolds@company.com">alicia.reynolds@company.com&lt;/a>&lt;/td>
+ &lt;td>+91-98123456&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: right">102&lt;/td>
+ &lt;td>Kevin White&lt;/td>
+ &lt;td>&lt;a href="mailto:kevin.white@company.com">kevin.white@company.com&lt;/a>&lt;/td>
+ &lt;td>+91-98234567&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="orders">orders&lt;a class="anchor" href="#orders">#&lt;/a>&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: right">order_id&lt;/th>
+ &lt;th style="text-align: right">customer_id&lt;/th>
+ &lt;th style="text-align: right">amount&lt;/th>
+ &lt;th>created_at&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: right">9001&lt;/td>
+ &lt;td style="text-align: right">101&lt;/td>
+ &lt;td style="text-align: right">1200.00&lt;/td>
+ &lt;td>2024-11-01&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: right">9002&lt;/td>
+ &lt;td style="text-align: right">102&lt;/td>
+ &lt;td style="text-align: right">450.00&lt;/td>
+ &lt;td>2024-11-02&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;/div>
+
+&lt;input type="radio" class="toggle" name="tabs-0" id="tabs-0-1" />&lt;label for="tabs-0-1">Config&lt;/label>&lt;div class="book-tabs-content markdown-inner">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">run&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">mode&lt;/span>: &lt;span style="color:#ae81ff">query&lt;/span> &lt;span style="color:#75715e"># or table&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">source&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">type&lt;/span>: &lt;span style="color:#ae81ff">postgres&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">url&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;postgresql://prod-snapshot:5432/app&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">username&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;readonly&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># Password resolve at runtime via env / vault / secret manager.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">passwordRef&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;DATAMASK_SOURCE_DB_PASSWORD&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">input&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">sqlFile&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;queries/customer_orders.sql&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># sql: &amp;#34;SELECT ...&amp;#34; # optional for very small queries&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># mode: table&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e"># tables: [&amp;#34;customers&amp;#34;, &amp;#34;orders&amp;#34;]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">output&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">type&lt;/span>: &lt;span style="color:#ae81ff">postgres&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">url&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;postgresql://uat-db:5432/app&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">username&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;datamask&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">passwordRef&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;DATAMASK_OUTPUT_DB_PASSWORD&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">audit&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">enabled&lt;/span>: &lt;span style="color:#66d9ef">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">path&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;audits/run-2024-11-15/&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">tables&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">customers&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">rowPercentage&lt;/span>: &lt;span style="color:#ae81ff">0.5&lt;/span> &lt;span style="color:#75715e"># regenerate 50% of rows&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">columns&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">customer_id&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">strategy&lt;/span>: &lt;span style="color:#ae81ff">deterministic_token&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">params&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">secret&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;CUSTOMER_ID&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">prefix&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;CUST_&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">length&lt;/span>: &lt;span style="color:#ae81ff">12&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">name&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">strategy&lt;/span>: &lt;span style="color:#ae81ff">synthetic_name&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">email&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">strategy&lt;/span>: &lt;span style="color:#ae81ff">deterministic_token&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">params&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">secret&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;EMAIL&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">prefix&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;email_&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">length&lt;/span>: &lt;span style="color:#ae81ff">16&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">suffix&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;@example.test&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">phone&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">strategy&lt;/span>: &lt;span style="color:#ae81ff">keep_last4&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">orders&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">rowPercentage&lt;/span>: &lt;span style="color:#ae81ff">0.5&lt;/span> &lt;span style="color:#75715e"># generate 50% of the number of rows. &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">columns&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">order_id&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">strategy&lt;/span>: &lt;span style="color:#ae81ff">deterministic_token&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">params&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">secret&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;ORDER_ID&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">prefix&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;ORD_&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">length&lt;/span>: &lt;span style="color:#ae81ff">12&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">customer_id&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">strategy&lt;/span>: &lt;span style="color:#ae81ff">preserve&lt;/span> &lt;span style="color:#75715e"># keep as-is so joins stay valid&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">amount&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">strategy&lt;/span>: &lt;span style="color:#ae81ff">preserve&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">created_at&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">strategy&lt;/span>: &lt;span style="color:#ae81ff">preserve&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">## for more data generation strategies, contact us. &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+
+&lt;input type="radio" class="toggle" name="tabs-0" id="tabs-0-2" />&lt;label for="tabs-0-2">CLI&lt;/label>&lt;div class="book-tabs-content markdown-inner">
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>datamask run --config config/config.yaml&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
+
+&lt;input type="radio" class="toggle" name="tabs-0" id="tabs-0-3" />&lt;label for="tabs-0-3">Output&lt;/label>&lt;div class="book-tabs-content markdown-inner">
+&lt;h3 id="customer-masked">customer (masked)&lt;a class="anchor" href="#customer-masked">#&lt;/a>&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: right">customer_id&lt;/th>
+ &lt;th>name&lt;/th>
+ &lt;th>email&lt;/th>
+ &lt;th>phone&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: right">CUST_K93F2Q8A&lt;/td>
+ &lt;td>Emma Brown&lt;/td>
+ &lt;td>&lt;a href="mailto:cust101@example.test">cust.k93f@example.test&lt;/a>&lt;/td>
+ &lt;td>98120000&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: right">CUST_JA82KQ9M&lt;/td>
+ &lt;td>Bob Smith&lt;/td>
+ &lt;td>&lt;a href="mailto:cust102@example.test">cust.ja82@example.test&lt;/a>&lt;/td>
+ &lt;td>98230000&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="orders-relationships-unchanged">orders (relationships unchanged)&lt;a class="anchor" href="#orders-relationships-unchanged">#&lt;/a>&lt;/h3>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: right">order_id&lt;/th>
+ &lt;th style="text-align: right">customer_id&lt;/th>
+ &lt;th style="text-align: right">amount&lt;/th>
+ &lt;th>created_at&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: right">ORD_82KF9&lt;/td>
+ &lt;td style="text-align: right">CUST_K93F2Q8A&lt;/td>
+ &lt;td style="text-align: right">1200.00&lt;/td>
+ &lt;td>2024-11-01&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: right">ORD_28QZ11&lt;/td>
+ &lt;td style="text-align: right">CUST_JA82KQ9M&lt;/td>
+ &lt;td style="text-align: right">450.00&lt;/td>
+ &lt;td>2024-11-02&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>&lt;strong>What to notice&lt;/strong>&lt;/p></description></item><item><title>Strategies</title><link>https://ation-dev.github.io/datamask.dev/docs/strategies/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ation-dev.github.io/datamask.dev/docs/strategies/</guid><description>&lt;h1 id="strategies">Strategies&lt;a class="anchor" href="#strategies">#&lt;/a>&lt;/h1>
+&lt;p>Datamask transforms data through &lt;strong>strategies&lt;/strong>.&lt;/p>
+&lt;blockquote class='book-hint info'>
+&lt;p>A strategy is a deterministic rule that defines how a field is converted from its original value into a safe replacement.&lt;/p>&lt;/blockquote>&lt;p>Each column in a dataset is mapped to exactly one strategy in the configuration.&lt;/p>
+&lt;hr>
+&lt;h2 id="identity-strategies">Identity strategies&lt;a class="anchor" href="#identity-strategies">#&lt;/a>&lt;/h2>
+&lt;blockquote class='book-hint '>
+&lt;p>These strategies protect fields that represent real people, accounts, or objects while preserving joinability across tables.&lt;/p>&lt;/blockquote>&lt;h3 id="deterministic-token">Deterministic token&lt;a class="anchor" href="#deterministic-token">#&lt;/a>&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">user_id&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">strategy&lt;/span>: &lt;span style="color:#ae81ff">tokenise&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">prefix&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;USR_&amp;#34;&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Input&lt;/th>
+ &lt;th>Output&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>101&lt;/td>
+ &lt;td>USR_A93F18B21&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;hr>
+&lt;h2 id="name-fields">Name fields&lt;a class="anchor" href="#name-fields">#&lt;/a>&lt;/h2>
+&lt;p>For human-readable fields, Datamask provides deterministic synthetic identities.&lt;/p></description></item><item><title>Principles</title><link>https://ation-dev.github.io/datamask.dev/docs/security/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ation-dev.github.io/datamask.dev/docs/security/</guid><description>&lt;h1 id="principles">Principles&lt;a class="anchor" href="#principles">#&lt;/a>&lt;/h1>
+&lt;p>Datamask is built on a small set of non-negotiable principles.&lt;/p>
+&lt;p>These are not product features, but the rules that shape how the Datamask is designed, operated, and trusted.&lt;/p>
+&lt;hr>
+&lt;h2 id="configuration-is-the-contract">Configuration is the contract&lt;a class="anchor" href="#configuration-is-the-contract">#&lt;/a>&lt;/h2>
+&lt;p>Datamask does nothing implicitly.&lt;/p>
+&lt;p>Every run is governed by a configuration that declares:&lt;/p>
+&lt;ul>
+&lt;li>what data is allowed to be accessed&lt;/li>
+&lt;li>how much of it is selected&lt;/li>
+&lt;li>how each field is transformed&lt;/li>
+&lt;li>where outputs are written&lt;/li>
+&lt;li>where audit records are stored&lt;/li>
+&lt;/ul>
+&lt;p>If something is not declared, it does not happen.&lt;/p></description></item><item><title>Datamask vs Tonic.ai</title><link>https://ation-dev.github.io/datamask.dev/docs/vstonic/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ation-dev.github.io/datamask.dev/docs/vstonic/</guid><description>&lt;h1 id="datamask-vs-tonicai">Datamask vs Tonic.ai&lt;a class="anchor" href="#datamask-vs-tonicai">#&lt;/a>&lt;/h1>
+&lt;p>Datamask and Tonic.ai both exist to solve the same fundamental problem:&lt;/p>
+&lt;blockquote class='book-hint '>
+&lt;p>&lt;em>How do teams get safe, usable data into non-production environments?&lt;/em>&lt;/p>&lt;/blockquote>&lt;p>They approach that problem from very different directions. This page explains where they overlap and where they differ.&lt;/p>
+&lt;hr>
+&lt;h2 id="two-different-system-models">Two different system models&lt;a class="anchor" href="#two-different-system-models">#&lt;/a>&lt;/h2>
+&lt;blockquote class='book-hint note'>
+&lt;p>&lt;strong>Managed data platform&lt;/strong> vs &lt;strong>Data execution engine&lt;/strong>.&lt;/p>&lt;/blockquote>&lt;p>This distinction shapes everything.&lt;/p>
+&lt;p>Tonic.ai provides a hosted system where users:&lt;/p>
+&lt;ul>
+&lt;li>connect data sources&lt;/li>
+&lt;li>configure masking and synthesis in a UI&lt;/li>
+&lt;li>generate and manage datasets inside the platform&lt;/li>
+&lt;/ul>
+&lt;p>Datamask provides an execution layer that:&lt;/p></description></item><item><title>Roadmap</title><link>https://ation-dev.github.io/datamask.dev/docs/roadmap/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ation-dev.github.io/datamask.dev/docs/roadmap/</guid><description>&lt;h1 id="vision--roadmap">Vision &amp;amp; Roadmap&lt;a class="anchor" href="#vision--roadmap">#&lt;/a>&lt;/h1>
+&lt;p>Datamask is being built to become the &lt;strong>execution plane for non-production data&lt;/strong>.&lt;/p>
+&lt;p>The long-term vision is simple:&lt;/p>
+&lt;blockquote class='book-hint important'>
+&lt;p>&lt;strong>Any dataset used outside production should be safe, explainable, and reproducible, regardless of where it comes from.&lt;/strong>&lt;/p>&lt;/blockquote>&lt;hr>
+&lt;h2 id="the-long-term-vision">The long-term vision&lt;a class="anchor" href="#the-long-term-vision">#&lt;/a>&lt;/h2>
+&lt;p>Over time, teams will need non-production data from many sources:&lt;/p>
+&lt;ul>
+&lt;li>production databases&lt;/li>
+&lt;li>staging systems&lt;/li>
+&lt;li>API contracts&lt;/li>
+&lt;li>canonical domain models&lt;/li>
+&lt;li>synthetic generators&lt;/li>
+&lt;/ul>
+&lt;p>Datamask is designed to sit underneath all of them as the &lt;strong>governed execution layer&lt;/strong> that:&lt;/p></description></item><item><title>Partner with Us</title><link>https://ation-dev.github.io/datamask.dev/docs/partner/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ation-dev.github.io/datamask.dev/docs/partner/</guid><description>&lt;h1 id="work-with-us">Work with us&lt;a class="anchor" href="#work-with-us">#&lt;/a>&lt;/h1>
+&lt;p>Datamask is being built in close collaboration with a small number of &lt;strong>design partners&lt;/strong>.&lt;/p>
+&lt;p>If you are responsible for:&lt;/p>
+&lt;ul>
+&lt;li>QA or UAT environments&lt;/li>
+&lt;li>test data management&lt;/li>
+&lt;li>data security in non-production systems&lt;/li>
+&lt;li>or developer experience around realistic test data&lt;/li>
+&lt;/ul>
+&lt;p>we would love to talk.&lt;/p>
+&lt;hr>
+&lt;h2 id="what-it-means-to-be-a-design-partner">What it means to be a design partner&lt;a class="anchor" href="#what-it-means-to-be-a-design-partner">#&lt;/a>&lt;/h2>
+&lt;p>Design partners help shape Datamask by:&lt;/p>
+&lt;ul>
+&lt;li>sharing real schemas or environments&lt;/li>
+&lt;li>describing how non-production data is used today&lt;/li>
+&lt;li>running early versions of the engine&lt;/li>
+&lt;li>and giving direct feedback on usability and data quality&lt;/li>
+&lt;/ul>
+&lt;p>In return, you get:&lt;/p></description></item></channel></rss>

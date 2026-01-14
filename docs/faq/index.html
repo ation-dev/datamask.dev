@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/datamask.dev/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=datamask.dev/livereload" data-no-instant defer></script>
+  <!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="FAQs# Where does Datamask run?# Datamask runs inside environments you control.
+It can be deployed as:
+a CLI a container (Kubernetes Job or CronJob) or inside a CI runner Does Datamask need public internet access?# No.
+Datamask can run in:
+private networks restricted VPCs or air-gapped environments How does Datamask access our databases?# Datamask connects using credentials provided by your existing secret management system.
+Secrets are never stored in configuration files or written to disk.
+The configuration references secrets by logical name, and the runtime resolves them from your environment.
+">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:url" content="http://localhost:1313/datamask.dev/docs/faq/">
+  <meta property="og:site_name" content="Datamask">
+  <meta property="og:title" content="FAQs">
+  <meta property="og:description" content="FAQs# Where does Datamask run?# Datamask runs inside environments you control.
+It can be deployed as:
+a CLI a container (Kubernetes Job or CronJob) or inside a CI runner Does Datamask need public internet access?# No.
+Datamask can run in:
+private networks restricted VPCs or air-gapped environments How does Datamask access our databases?# Datamask connects using credentials provided by your existing secret management system.
+Secrets are never stored in configuration files or written to disk.
+The configuration references secrets by logical name, and the runtime resolves them from your environment.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="docs">
+
+
+  <meta itemprop="name" content="FAQs">
+  <meta itemprop="description" content="FAQs# Where does Datamask run?# Datamask runs inside environments you control.
+It can be deployed as:
+a CLI a container (Kubernetes Job or CronJob) or inside a CI runner Does Datamask need public internet access?# No.
+Datamask can run in:
+private networks restricted VPCs or air-gapped environments How does Datamask access our databases?# Datamask connects using credentials provided by your existing secret management system.
+Secrets are never stored in configuration files or written to disk.
+The configuration references secrets by logical name, and the runtime resolves them from your environment.">
+  <meta itemprop="wordCount" content="387">
+
+<title>FAQs | Datamask</title>
+<link rel="icon" href="/datamask.dev/favicon.png" >
+<link rel="manifest" href="/datamask.dev/manifest.json">
+<link rel="canonical" href="http://localhost:1313/datamask.dev/docs/faq/">
+<link rel="stylesheet" href="/datamask.dev/book.min.cc2c524ed250aac81b23d1f4af87344917b325208841feca0968fe450f570575.css" integrity="sha256-zCxSTtJQqsgbI9H0r4c0SRezJSCIQf7KCWj&#43;RQ9XBXU=" crossorigin="anonymous">
+
+
+
+
+  
+</head>
+<body dir="ltr" class="book-kind-page book-type-docs">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    
+<aside class="book-menu">
+  <div class="book-menu-content">
+    
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/datamask.dev/"><span>Datamask</span>
+  </a>
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/how-it-works/" class="">
+      How it Works</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/example/" class="">
+      Sample</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/strategies/" class="">
+      Strategies</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/security/" class="">
+      Principles</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/vstonic/" class="">
+      Datamask vs Tonic.ai</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/roadmap/" class="">
+      Roadmap</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/datamask.dev/docs/faq/" class="active">
+      FAQs</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+  </div>
+</aside>
+ 
+
+    <div class="book-page">
+      <header class="book-header hidden">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/datamask.dev/icons/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <h3>FAQs</h3>
+
+  <label for="toc-control">
+    
+    <img src="/datamask.dev/icons/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#where-does-datamask-run">Where does Datamask run?</a></li>
+    <li><a href="#does-datamask-need-public-internet-access">Does Datamask need public internet access?</a></li>
+    <li><a href="#how-does-datamask-access-our-databases">How does Datamask access our databases?</a></li>
+    <li><a href="#who-writes-the-configuration">Who writes the configuration?</a></li>
+    <li><a href="#what-happens-if-our-schema-changes">What happens if our schema changes?</a></li>
+    <li><a href="#can-datamask-accidentally-expose-real-data">Can Datamask accidentally expose real data?</a></li>
+    <li><a href="#how-is-this-different-from-copying-production-data">How is this different from copying production data?</a></li>
+    <li><a href="#can-we-reproduce-a-dataset-later">Can we reproduce a dataset later?</a></li>
+    <li><a href="#can-this-be-automated">Can this be automated?</a></li>
+    <li><a href="#is-datamask-replacing-our-data-platform-or-pipelines">Is Datamask replacing our data platform or pipelines?</a></li>
+    <li><a href="#what-is-expected-from-a-design-partner">What is expected from a design partner?</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="faqs">FAQs<a class="anchor" href="#faqs">#</a></h1>
+<h2 id="where-does-datamask-run">Where does Datamask run?<a class="anchor" href="#where-does-datamask-run">#</a></h2>
+<p>Datamask runs inside environments you control.</p>
+<p>It can be deployed as:</p>
+<ul>
+<li>a CLI</li>
+<li>a container (Kubernetes Job or CronJob)</li>
+<li>or inside a CI runner</li>
+</ul>
+<hr>
+<h2 id="does-datamask-need-public-internet-access">Does Datamask need public internet access?<a class="anchor" href="#does-datamask-need-public-internet-access">#</a></h2>
+<p>No.</p>
+<p>Datamask can run in:</p>
+<ul>
+<li>private networks</li>
+<li>restricted VPCs</li>
+<li>or air-gapped environments</li>
+</ul>
+<hr>
+<h2 id="how-does-datamask-access-our-databases">How does Datamask access our databases?<a class="anchor" href="#how-does-datamask-access-our-databases">#</a></h2>
+<p>Datamask connects using credentials provided by your existing secret management system.</p>
+<p>Secrets are never stored in configuration files or written to disk.<br>
+The configuration references secrets by logical name, and the runtime resolves them from your environment.</p>
+<hr>
+<h2 id="who-writes-the-configuration">Who writes the configuration?<a class="anchor" href="#who-writes-the-configuration">#</a></h2>
+<p>In early versions, configurations are written by engineers.</p>
+<p>Datamask is designed to assist with:</p>
+<ul>
+<li>detecting likely sensitive fields</li>
+<li>suggesting strategies</li>
+<li>and generating draft configurations</li>
+</ul>
+<p>But execution always requires explicit, human-approved configuration.</p>
+<hr>
+<h2 id="what-happens-if-our-schema-changes">What happens if our schema changes?<a class="anchor" href="#what-happens-if-our-schema-changes">#</a></h2>
+<p>Datamask detects schema drift by comparing the source schema to what the configuration expects.</p>
+<p>You can choose to:</p>
+<ul>
+<li>fail the run</li>
+<li>or require explicit review</li>
+</ul>
+<p>This prevents silent data corruption when production schemas evolve.</p>
+<hr>
+<h2 id="can-datamask-accidentally-expose-real-data">Can Datamask accidentally expose real data?<a class="anchor" href="#can-datamask-accidentally-expose-real-data">#</a></h2>
+<p>Datamask is designed to fail safe.</p>
+<p>If:</p>
+<ul>
+<li>a column is not covered by rules</li>
+<li>a constraint cannot be met</li>
+<li>or a safety condition is violated</li>
+</ul>
+<p>the run stops instead of producing unsafe output.</p>
+<hr>
+<h2 id="how-is-this-different-from-copying-production-data">How is this different from copying production data?<a class="anchor" href="#how-is-this-different-from-copying-production-data">#</a></h2>
+<p>Datamask produces:</p>
+<ul>
+<li>safe, transformed values</li>
+<li>preserved relationships</li>
+<li>stable identities</li>
+<li>and a full audit trail</li>
+</ul>
+<p>You get production-like behaviour without exposing production data.</p>
+<hr>
+<h2 id="can-we-reproduce-a-dataset-later">Can we reproduce a dataset later?<a class="anchor" href="#can-we-reproduce-a-dataset-later">#</a></h2>
+<p>Yes.</p>
+<p>Every Datamask run is tied to:</p>
+<ul>
+<li>a configuration</li>
+<li>an engine version</li>
+<li>and an input schema</li>
+</ul>
+<p>The same inputs and configuration will always produce the same outputs.</p>
+<hr>
+<h2 id="can-this-be-automated">Can this be automated?<a class="anchor" href="#can-this-be-automated">#</a></h2>
+<p>Yes.</p>
+<p>The same configuration used for manual runs can be executed in:</p>
+<ul>
+<li>CI pipelines</li>
+<li>scheduled jobs</li>
+<li>or environment refresh workflows</li>
+</ul>
+<p>Automation does not change behaviour — it only changes how the run is triggered.</p>
+<hr>
+<h2 id="is-datamask-replacing-our-data-platform-or-pipelines">Is Datamask replacing our data platform or pipelines?<a class="anchor" href="#is-datamask-replacing-our-data-platform-or-pipelines">#</a></h2>
+<p>No.</p>
+<p>Datamask integrates with:</p>
+<ul>
+<li>your databases</li>
+<li>your secret managers</li>
+<li>your CI/CD</li>
+<li>and your storage</li>
+</ul>
+<p>It provides a deterministic execution layer for non-production data, not a new data platform.</p>
+<hr>
+<h2 id="what-is-expected-from-a-design-partner">What is expected from a design partner?<a class="anchor" href="#what-is-expected-from-a-design-partner">#</a></h2>
+<p>Design partners typically:</p>
+<ul>
+<li>provide a real schema or environment</li>
+<li>define one or two target use cases (e.g., UAT refresh, QA dataset)</li>
+<li>and give feedback on usability and data quality</li>
+</ul>
+<p>The goal is to shape Datamask around real engineering needs.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+<div>
+
+</div>
+
+<div>
+
+</div>
+
+</div>
+
+
+
+
+
+  
+  
+  
+  <div class="flex flex-wrap justify-between">
+    <span>
+    
+      <a href="/datamask.dev/docs/roadmap/" class="flex align-center">
+        <img src="/datamask.dev/icons/backward.svg" class="book-icon" alt="Backward" />
+        <span>Roadmap</span>
+      </a>
+    
+    </span>
+    <span>
+    
+    </span>
+  </div>
+  
+
+
+ 
+        
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+        
+        
+  
+ 
+        
+  
+  
+    <script>(function(){document.querySelectorAll("pre:has(code)").forEach(e=>{e.addEventListener("click",e.focus),e.addEventListener("copy",function(t){if(t.preventDefault(),navigator.clipboard){const t=window.getSelection().toString()||e.textContent;navigator.clipboard.writeText(t)}})})})()</script>
+  
+
+      </footer>
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  
+  <aside class="book-toc">
+    <div class="book-toc-content">
+      
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#where-does-datamask-run">Where does Datamask run?</a></li>
+    <li><a href="#does-datamask-need-public-internet-access">Does Datamask need public internet access?</a></li>
+    <li><a href="#how-does-datamask-access-our-databases">How does Datamask access our databases?</a></li>
+    <li><a href="#who-writes-the-configuration">Who writes the configuration?</a></li>
+    <li><a href="#what-happens-if-our-schema-changes">What happens if our schema changes?</a></li>
+    <li><a href="#can-datamask-accidentally-expose-real-data">Can Datamask accidentally expose real data?</a></li>
+    <li><a href="#how-is-this-different-from-copying-production-data">How is this different from copying production data?</a></li>
+    <li><a href="#can-we-reproduce-a-dataset-later">Can we reproduce a dataset later?</a></li>
+    <li><a href="#can-this-be-automated">Can this be automated?</a></li>
+    <li><a href="#is-datamask-replacing-our-data-platform-or-pipelines">Is Datamask replacing our data platform or pipelines?</a></li>
+    <li><a href="#what-is-expected-from-a-design-partner">What is expected from a design partner?</a></li>
+  </ul>
+</nav>
+
+
+
+    </div>
+  </aside>
+  
+ 
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

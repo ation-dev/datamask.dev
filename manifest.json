@@ -1,0 +1,15 @@
+{
+  "name": "Datamask",
+  "short_name": "Datamask",
+  "start_url": "/datamask.dev/",
+  "scope": "/datamask.dev/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/datamask.dev/favicon.svg",
+      "sizes": "512x512"
+    }
+  ]
+}
