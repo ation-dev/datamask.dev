@@ -10,8 +10,9 @@ Every engineering team needs production-like data.
 QA, UAT, staging, debugging, analytics, all of it depends on data that behaves like the real world. But real production data is sensitive, regulated, and increasingly dangerous to copy.
 
 So teams are stuck between two bad options:
-- **clone production and hope nothing leaks**, or  
-- **use synthetic or masked data that changes every time and breaks tests**
+> [!IMPORTANT]
+> **clone production and hope nothing leaks**, or  
+> **use synthetic or masked data that changes every time and breaks tests**
 
 ---
 
@@ -30,13 +31,8 @@ These teams don’t just need fake data. They need data **that can mimic real wo
 
 ## Why current approaches fall short
 
-Copying production is unsafe.  
-Synthetic data is unstable.  
-Managed platforms hide too much of what they do.
-
-Most tools optimise for convenience or realism, very few optimise for **repeatability, control, and auditability**.
-
-That’s the gap Datamask aims to fill.
+Copying production is unsafe, synthetic data is unstable, & managed platforms aren't transparent enough.
+Most tools optimise for convenience or realism, Datamask aims to optimise for **repeatability, control, and auditability**.
 
 ---
 
@@ -45,8 +41,8 @@ That’s the gap Datamask aims to fill.
 Datamask is a **deterministic execution plane for non-production data**.
 
 Instead of guessing or generating, teams **declare**:
-- what data can be used  
-- how it must be transformed  
+- what tables/data/models can be used  
+- strategies it uses to be transformed  
 - and where the output should go  
 
 Datamask then executes that contract inside team's own infrastructure and produces:
@@ -61,11 +57,10 @@ The same inputs and the same configuration always produce the same output.
 
 With Datamask, teams get:
 
-- QA and UAT environments that don’t drift  
-- bugs that can actually be reproduced  
-- data that is safe, explainable, and predictable  
-
-Not just masked data, but **operational data you can trust**.
+- QA and UAT environments that don’t drift with different test data  
+- bugs that are reproducable with no flaky or unpredictable test data
+- data that is safe, explainable, and predictable
+- & transformation that is controlled, & auditable
 
 ---
 
